@@ -1,0 +1,41 @@
+# Demo for expose REST API as MCP Server from API Management
+
+Create a REST API from the public Star Wars API: https://swapi.py4e.com/api
+
+Create a MCP Server is API Management from that REST API.
+
+Setup the subscription key to access the api.
+
+Confiure the `.vscode/mcp.json` file like so:
+
+```json
+{
+    "inputs": [
+    {
+      "type": "promptString",
+      "id": "api-key",
+      "description": "APIM Subscription Key for MCP Demos",
+      "password": true
+    }
+    ],
+    "servers": {
+        "star-wars-mcp-server": {
+            "url": "https://<your-apim-instance>.azure-api.net/swapi-mcp/sse",
+            "headers": {
+                "Ocp-Apim-Subscription-Key": "${input:api-key}"
+            }
+        }
+    }
+}
+```
+
+Set GitHub Copilot to `Agent` mode.
+
+Ask some questions:
+
+* Tell me about the Star Wars movie, A New Hope
+* Create a table of all the Star Wars movies with the columns: Title, Release Date, Episode, and 3 keywords that summarise the movie (from the opening crawl).
+* sort the moviers by year (asc)
+* sort the movies by episode (roman numerals) asc
+
+
