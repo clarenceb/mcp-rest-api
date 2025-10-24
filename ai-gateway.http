@@ -1,0 +1,31 @@
+# REST API test
+
+@apim_server = {{$dotenv APIM_SERVER}}
+@apim_key = {{$dotenv API_KEY}}
+@openai_version = 2025-03-01-preview
+@deployment_name = gpt-4o
+
+###
+# REST API test
+GET https://{{apim_server}}.azure-api.net/api/films/
+Ocp-Apim-Subscription-Key: {{apim_key}}
+
+###
+# LLM Logging test
+
+POST https://{{apim_server}}.azure-api.net/openai/deployments/{{deployment_name}}/chat/completions?api-version={{openai_version}}
+Content-Type: application/json
+api-key: {{apim_key}}
+
+{ "messages":[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Tell me a joke about fish."}] }
+
+###
+POST https://{{apim_server}}.azure-api.net/openai/deployments/{{deployment_name}}/chat/completions?api-version={{openai_version}}
+Content-Type: application/json
+api-key: {{apim_key}}
+
+{ "messages":[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "What is the captial of France?"}] }

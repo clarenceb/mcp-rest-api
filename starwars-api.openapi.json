@@ -1,0 +1,100 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Star Wars API",
+        "description": "From https://swapi.dev/api/",
+        "version": "1.0"
+    },
+    "servers": [{
+        "url": "https://[your-apim-service].azure-api.net/api"
+    }],
+    "paths": {
+        "/films/": {
+            "get": {
+                "summary": "films",
+                "description": "Get all the film resources",
+                "operationId": "films",
+                "responses": {
+                    "200": {
+                        "description": "all available films"
+                    }
+                }
+            }
+        },
+        "/films/{id}": {
+            "get": {
+                "summary": "films_by_id",
+                "description": "Get a specific film resource by its ID",
+                "operationId": "films-by-id",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "The ID of the film to retrieve.",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "default": 1
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "requested film with the given ID"
+                    }
+                }
+            }
+        },
+        "/people/": {
+            "get": {
+                "summary": "people",
+                "description": "Get all the people resources",
+                "operationId": "people",
+                "responses": {
+                    "200": {
+                        "description": "all the people in the star wars movies"
+                    }
+                }
+            }
+        },
+        "/people/{id}": {
+            "get": {
+                "summary": "people_by_id",
+                "description": "Get a specific people resource by ID",
+                "operationId": "people-by-id",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "The ID of the people/person to retrieve.",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "default": 1
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "the requested person from star wars by ID"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [{
+        "apiKeyHeader": []
+    }, {
+        "apiKeyQuery": []
+    }]
+}

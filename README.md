@@ -1,10 +1,14 @@
-# Demo for expose REST API as MCP Server from API Management
+# Demo for expose REST API as MCP Server from API Management and LLM Logging
 
-Create a REST API from the public Star Wars API: https://swapi.py4e.com/api
+## Set up APIM REST API and MCP Server
 
-Create a MCP Server is API Management from that REST API.
+Create a REST API from the public Star Wars API: https://swapi.dev/api/
 
-Setup the subscription key to access the api.
+Create a MCP Server in API Management from that REST API.
+
+Setup a subscription key to access the api.
+
+## VSCode MCP configuration
 
 Confiure the `.vscode/mcp.json` file like so:
 
@@ -29,6 +33,8 @@ Confiure the `.vscode/mcp.json` file like so:
 }
 ```
 
+## Test out the REST API as an MCP Server
+
 Set GitHub Copilot to `Agent` mode.
 
 Ask some questions:
@@ -38,4 +44,15 @@ Ask some questions:
 * sort the moviers by year (asc)
 * sort the movies by episode (roman numerals) asc
 
+* Open the file [Placehgolder.md](Placeholder.md) and then type in the Copilot Chat: Insert the last table in my open file
 
+## LLM Logging
+
+```sh
+ApiManagementGatewayLogs
+| where OperationId contains "ChatCompletions"
+| order by TimeGenerated desc
+
+ApiManagementGatewayLlmLog
+| order by TimeGenerated desc, SequenceNumber asc
+```
