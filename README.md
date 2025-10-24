@@ -48,6 +48,8 @@ Ask some questions:
 
 ## LLM Logging
 
+If you enable [APIM LLM Logging](https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-llm-logs), then you can check the LLM logs in the APIM Monitoring / Logs blade:
+
 ```sh
 ApiManagementGatewayLogs
 | where OperationId contains "ChatCompletions"
